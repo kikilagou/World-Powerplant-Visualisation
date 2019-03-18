@@ -197,7 +197,8 @@
             
             </div>
         </section>
-         <!--================End Procession Area =================-->
+		 <!--================End Procession Area =================-->
+		 
 		 
 		 
 		 <section class="feature_area" id="feature_area">
@@ -207,6 +208,12 @@
                     <h2>Visualisation 1</h2>
                 </div>
 				
+				<div>
+					<input type="checkbox"  name="cat1" id='checkRenew' onclick="callOnCheckboxSelection()" checked>Renewable <span> </span>
+					<input type="checkbox" name="cat2" id='checkNonRenew' onclick="callOnCheckboxSelection()" checked>Non-Renewable<span> </span>
+					<input type="checkbox" name="cat3" id='checkOther' onclick="callOnCheckboxSelection()" checked>Other<span> </span>
+
+				</div>
 				<div id="map" class="background feature mesh"></div>
 				
 				<!-- Based on https://bl.ocks.org/piwodlaiwo/90777c94b0cd9b6543d9dfb8b5aefeef who cited: Based on https://bl.ocks.org/iamkevinv/0a24e9126cd2fa6b283c6f2d774b69a2 -->
@@ -216,7 +223,9 @@
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.13.0/d3-legend.js"></script>
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.13.0/d3-legend.js"></script>
 
-						<script>
+				<script>
+
+
 						d3.csv("dataset.csv").get(function(error, rows) {
 								rows.forEach(function(error, d) {
 								d.capacity_mw = +d.capacity_mw;
@@ -230,6 +239,8 @@
 						var width = 1300,
 							height = 900,
 							active = d3.select(null);
+						var filter = new Set(["Renewable", "NonRenewable", "Other"]);
+
 						
 						var projection = d3.geo.mercator()
 							.scale(200)
@@ -252,15 +263,68 @@
 						var g = svg.append("g");
 						  
 						svg.call(zoom);
+
+						$(function() {
+							callOnCheckboxSelection = function() {
+								g.selectAll("circle").remove();
+
+								var renew = document.getElementById("checkRenew");
+								var nonRenew = document.getElementById("checkNonRenew");
+								var other = document.getElementById("checkOther");
+
+								tempList = []
+								if (other.checked == true) {
+									tempList.push('Other')
+									tempList.push('Waste')
+								}
+								if (renew.checked == true) {
+									tempList.push('Biomass')
+									tempList.push('Hydro')
+									tempList.push('Geothermal')
+									tempList.push('Solar')
+									tempList.push('Wind')
+								}
+								if (nonRenew.checked == true) {
+									tempList.push('Gas')
+									tempList.push('Oil')
+									tempList.push('Coal')
+									tempList.push('Nuclear')
+								}
+
+								console.log(tempList)
+
+								var filtRes = rows.filter(function(d){
+                                    if(tempList.includes(d["fuel1"])) {
+                                        return d
+                                    }
+								})
+
+								console.log(filtRes)
 							
-					
+								placePlants(filtRes)
+								// if (other.checked == true && nonRenew.checked == true && renew.checked == true) {
+								// 	combined = ren && nonre && oth
+								// 	placePlants(combined)
+									
+								// }
+								// if (renew.checked == true) {
+								// 	placePlants(ren)
+								// }
+								// if (nonRenew.checked == true) {
+								// 	placePlants(nonre)
+								// }
+							};
+						});
+								
+
 						// delete this line to disable free zooming
 							
 							// .call(zoom.event); // not in d3 v4
 						function placePlants(points) {
 								g.selectAll("circle").remove();
 								
-								
+								// t = d3.event.transform.k;
+								val = 1.5;
 								
 								var locations = g.selectAll("circle")
 										   .data(points)
@@ -268,7 +332,8 @@
 										   .append("circle")
 										   .attr("cx", function(e) {return projection([+e.longitude, +e.latitude])[0];})
 										   .attr("cy", function(d) {return projection([+d.longitude, +d.latitude])[1];})
-										   .attr("r", 2) // radius
+										   
+										   .attr("r", val) // radius
 										   .style("fill", function(d) {
 												if  (d.fuel1 == "Other" || d.fuel1 == "Waste"){
 													return  "black"
@@ -281,7 +346,13 @@
 													}
 											})
 										   .style("opacity", 0.5);
-								   
+										   svg.call(zoom);
+
+						// 				   t = d3.event.transform.k;
+						// 		   							t = d3.event.transform.k
+						//   g.style("stroke-width", 1.5 / d3.event.transform.k + "px");
+						//   if (t > 5) {
+						// 	g.selectAll("circle") 
 						}
 
 						d3.json("https://gist.githubusercontent.com/mbostock/4090846/raw/d534aba169207548a8a3d670c9c2cc719ff05c47/world-50m.json", function(error, world) {
@@ -338,7 +409,11 @@
 						}
 
 						function zoomed() {
+							t = d3.event.transform.k
 						  g.style("stroke-width", 1.5 / d3.event.transform.k + "px");
+						  if (t > 5) {
+							g.selectAll("circle") .attr("r", 7/t)
+						  }
 						  // g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")"); // not in d3 v4
 						  g.attr("transform", d3.event.transform); // updated for d3 v4
 						}
@@ -351,214 +426,132 @@
 						
 					
 						// Legend source: https://d3-legend-v3.susielu.com/#color-ordinal
-						var ordinal = d3.scaleOrdinal()
-						  .domain(["Renewable", "Non Renewable", "Other"])
-						 // .range(["rgb(153, 107, 195)", "rgb(56, 106, 197)", "rgb(93, 199, 76)", "rgb(223, 199, 31)", "rgb(234, 118, 47)"]);
-						  .range(["rgb(93, 199, 76)", "rgb(234, 118, 47)", "rgb(223, 199, 31)"]);
+						// var ordinal = d3.scaleOrdinal()
+						//   .domain(["Renewable", "Non Renewable", "Other"])
+						//  // .range(["rgb(153, 107, 195)", "rgb(56, 106, 197)", "rgb(93, 199, 76)", "rgb(223, 199, 31)", "rgb(234, 118, 47)"]);
+						//   .range(["rgb(93, 199, 76)", "rgb(234, 118, 47)", "rgb(223, 199, 31)"]);
 
-						var svg = d3.select("svg");
+						// var svg = d3.select("svg");
 
-						svg.append("g")
-						  .attr("class", "legendOrdinal")
-						  .attr("transform", "translate(20,20)");
+						// svg.append("g")
+						//   .attr("class", "legendOrdinal")
+						//   .attr("transform", "translate(20,20)");
 
-						var legendOrdinal = d3.legendColor()
-						  //.shape("path", d3.symbol().type(d3.symbolTriangle).size(150)())
-						  .shapePadding(10)
-						  .shape("circle")
-						  //use cellFilter to hide the "e" cell
-						  .scale(ordinal)
-						  .on("cellclick", function(legendItem){
-								console.log("whoop")	
-								console.log(filteredData)
-								placePlants(filteredData)
+						// var legendOrdinal = d3.legendColor()
+						//   //.shape("path", d3.symbol().type(d3.symbolTriangle).size(150)())
+						//   .shapePadding(10)
+						//   .shape("circle")
+						//   //use cellFilter to hide the "e" cell
+						//   .scale(ordinal)
+						// //   .on("cellclick", function(legendItem){
+						// // 		console.log("whoop")	
+						// // 		console.log(filteredData)
+						// // 		placePlants(filteredData)
 
-							})
-						  .on("cellover", function(legendItem){
-							var circle = d3.select(this)
-							.selectAll(".swatch");
-							circle.attr("r", circle.attr("r") *1.3);	
-						  })
-						  .on("cellout", function(legendItem){
-							var circle = d3.select(this)
-							.selectAll(".swatch");
-							circle.attr("r", circle.attr("r") /1.3);	
-						  });
+						// // 	})
+						// .on("cellclick", function(legendItem){
+						// 	if(filter.has(legendItem))
+						// 		filter.delete(legendItem);
+						// 	else
+						// 		filter.add(legendItem);
+						// 		placePlants(data);
+						// })
+						//   .on("cellover", function(legendItem){
+						// 	var circle = d3.select(this)
+						// 	.selectAll(".swatch");
+						// 	circle.attr("r", circle.attr("r") *1.3);	
+						//   })
+						//   .on("cellout", function(legendItem){
+						// 	var circle = d3.select(this)
+						// 	.selectAll(".swatch");
+						// 	circle.attr("r", circle.attr("r") /1.3);	
+						//   });
 
 
-						svg.select(".legendOrdinal")
-						  .call(legendOrdinal);
+						// svg.select(".legendOrdinal")
+						//   .call(legendOrdinal);
 						  
 						// https://stackoverflow.com/questions/23156864/d3-js-filter-from-csv-file-using-multiple-columns
-						var filteredData = rows.filter(function(d) { 
+						// var filteredData = rows.filter(function(d) { 
 
-								if( d["fuel1"] == "Other") { 
-									return d;
-								}})
+						// 		if( d["fuel1"] == "Other" ||  d["fuel1"] == "Waste" ) { 
+						// 			return{type:"Other", d}
+						// 		}
+
+						// 		if( d["fuel1"] == "Coal" ||  d["fuel1"] == "Gas" ||  d["fuel1"] == "Nuclear" ||  d["fuel1"] == "Oil" ) { 
+						// 			return{type:"NonRenewable", d}
+						// 		}
+								
+						// 		if( d["fuel1"] == "Biomass" ||  d["fuel1"] == "Geothermal" ||  d["fuel1"] == "Hydro" ||  d["fuel1"] == "Solar" ||  d["fuel1"] == "Wind" ) { 
+						// 			return {type:"Renewable", d}
+						// 		}
+
+
+								
+						// 		})
+
+
+						// var oth = rows.filter(function(d){
+                        //             if(d["fuel1"] == "Other" || d["fuel1"] == "Waste") {
+                        //                 return d
+                        //             }
+                        //     })
+
+                        //     var ren = rows.filter(function(d){
+                        //             if(d["fuel1"] == "Biomass" || d["fuel1"] == "Hydro" || d["fuel1"] == "Geothermal" || d["fuel1"] == "Solar" || d["fuel1"] == "Wind" ) {
+                        //                 return d
+                        //             }
+                        //     })
+
+                        //     var nonre = rows.filter(function(d){
+                        //             if(d["fuel1"] == "Oil" || d["fuel1"] == "Gas" || d["fuel1"] == "Coal" || d["fuel1"] == "Nuclear") {
+                        //                 return d
+                        //             }
+                        //     })
+
+                        //     // var otherren = rows.filter(function(d){
+                            //         if(d["fuel1"] == "Other" || d["fuel1"] == "Waste" || d["fuel1"] == "Biomass" || d["fuel1"] == "Hydro" || d["fuel1"] == "Geothermal" || d["fuel1"] == "Solar" || d["fuel1"] == "Wind" ) {
+                            //             return d
+                            //         }
+                            // })
+
+                            // var rennonren = rows.filter(function(d){
+                            //     if(d["fuel1"] == "Biomass" || d["fuel1"] == "Hydro" || d["fuel1"] == "Geothermal" || d["fuel1"] == "Solar" || d["fuel1"] == "Wind" || d["fuel1"] == "Oil" || d["fuel1"] == "Gas" || d["fuel1"] == "Coal" || d["fuel1"] == "Nuclear") {
+                            //             return d
+                            //         }
+                            // })
+
+                            // var othernon = rows.filter(function(d){
+                            //     if(d["fuel1"] == "Oil" || d["fuel1"] == "Gas" || d["fuel1"] == "Coal" || d["fuel1"] == "Nuclear" || d["fuel1"] == "Other" || d["fuel1"] == "Waste") {
+                            //             return d
+                            //         }
+                            // })
+
+                            // var selectall = rows.filter(function(d){
+                            //     if(d["fuel1"] == "Biomass" || d["fuel1"] == "Hydro" || d["fuel1"] == "Geothermal" || d["fuel1"] == "Solar" || d["fuel1"] == "Wind" || d["fuel1"] == "Oil" || d["fuel1"] == "Gas" || d["fuel1"] == "Coal" || d["fuel1"] == "Nuclear" || d["fuel1"] == "Other" || d["fuel1"] == "Waste") {
+                            //             return d
+                            //         }
+							// })
+							
+
+								
 								
 						
 					})
 					
 					
 					
-			</script>
-			<!--
-			<script src="https://d3js.org/d3.v3.min.js"></script>
-			<script src="https://d3js.org/topojson.v0.min.js"></script>
-			<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.13.0/d3-legend.js"></script>
-
-			<script>
-			
-				d3.csv("dataset.csv").get(function(error, rows) {
-				rows.forEach(function(error, d) {
-								d.capacity_mw = +d.capacity_mw;
-								d.latitude = +d.latitude;
-								d.longitude = +d.longitude;
-								d.commissioning_year = +d.commissioning_year;
-								d.estimated_generation_gwh = +d.estimated_generation_gwh;
-							});
-							console.log(rows); 
-
-
-				var margin = {top:30, left: 30, right:30, bottom:30}, 
-					height = 900 - margin.top - margin.bottom,
-					width = 1500 - margin.left - margin.right,
-					active = d3.select(null),	
-					centered;
-				
-
-		//geoOrthographic
-				var projection = d3.geo.mercator()
-					.scale(200)
-                    .center([13.439235,48.830666])  // centers map at given coordinates
-                    .translate([width /2.1, height / 2.9]);
-					
-
-				var svg = d3.select("#map").append("svg")
-					.attr("width", width)
-					.attr("height", height);
-					
-				var path = d3.geo.path()
-					.projection(projection);
-
-				var g = svg.append("g");
-				
-
-				// load and display the world and locations
-				d3.json("https://gist.githubusercontent.com/mbostock/4090846/raw/d534aba169207548a8a3d670c9c2cc719ff05c47/world-50m.json", function(error, topology) {
-
-								const colors = ['silver'];
-
-				var world = g.selectAll("path")
-								.data(topojson.object(topology, topology.objects.countries).geometries)
-								.enter()
-								.append("path")
-								.attr("d", path)
-								.style("fill", () => colors[0]);
-
-
-				// add city location circles
-				var locations = g.selectAll("circle")
-								   .data(rows)
-								   .enter()
-								   .append("circle")
-								   .attr("cx", function(e) {return projection([+e.longitude, +e.latitude])[0];})
-								   .attr("cy", function(d) {return projection([+d.longitude, +d.latitude])[1];})
-								   .attr("r", 1)
-								   .style("fill", "red")
-								   .style("opacity", 0.7);
-				});
-
-				//zoom and pan functionality
-				var zoom = d3.behavior.zoom()
-					.scaleExtent([1, 100])
-					.on("zoom",function() {
-						g.attr("transform","translate("+ 
-							d3.event.translate.join(",")+")scale("+d3.event.scale+")");
-						g.selectAll("path")  
-							.attr("d", path.projection(projection)); 
-				  });
-				svg.call(zoom);
-				
-				function clicked(d) {
-					  var x, y, k;
-
-					  if (d && centered !== d) {
-						var centroid = path.centroid(d);
-						x = centroid[0];
-						y = centroid[1];
-						k = 4;
-						centered = d;
-					  } else {
-						x = width / 2;
-						y = height / 2;
-						k = 1;
-						centered = null;
-					  }
-
-					  g.selectAll("path")
-						  .classed("active", centered && function(d) { return d === centered; });
-
-					  g.transition()
-						  .duration(750)
-						  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
-						  .style("stroke-width", 1.5 / k + "px");
-					}
-
-				
-				})
-
-
-				</script> 		  --->
+				</script>	
 			 </div> 
 		 </section>
 		
+
+		
+	
 		
         <!--================Footer Area =================-->
         <footer class="footr_area">
-            <div class="footer_widget_area">
-                <div class="container">
-                    <div class="row footer_widget_inner">
-                        <div class="col-lg-4 col-sm-6">
-                            <aside class="f_widget f_about_widget">
-                                <img src="img/footer-logo.png" alt="">
-                                <p>Cras ex mauris, ornare eget pretium sit amet, dignissim et turpis. Nunc nec maximus dui, vel suscipit dolor. Donec elementum velit a orci facilisis rutrum.</p>
-                            </aside>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <aside class="f_widget f_insta_widget">
-                                <div class="f_title">
-                                    <h3>Instagram</h3>
-                                </div>
-                                <ul>
-                                    <li><a href="#"><img src="img/instagram/ins-1.jpg" alt=""></a></li>
-                                    <li><a href="#"><img src="img/instagram/ins-2.jpg" alt=""></a></li>
-                                    <li><a href="#"><img src="img/instagram/ins-3.jpg" alt=""></a></li>
-                                    <li><a href="#"><img src="img/instagram/ins-4.jpg" alt=""></a></li>
-                                    <li><a href="#"><img src="img/instagram/ins-5.jpg" alt=""></a></li>
-                                    <li><a href="#"><img src="img/instagram/ins-6.jpg" alt=""></a></li>
-                                    <li><a href="#"><img src="img/instagram/ins-7.jpg" alt=""></a></li>
-                                    <li><a href="#"><img src="img/instagram/ins-8.jpg" alt=""></a></li>
-                                </ul>
-                            </aside>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <aside class="f_widget f_subs_widget">
-                                <div class="f_title">
-                                    <h3>Subscribe to newsletter</h3>
-                                </div>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Your e-mail address here" aria-label="Your e-mail address here">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-secondary submit_btn" type="button">Subscribe</button>
-                                    </span>
-                                </div>
-                            </aside>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <div class="footer_copyright">
                 <div class="container">
                     <div class="float-sm-left">
@@ -566,16 +559,7 @@
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></h5>
                     </div>
-                    <div class="float-sm-right">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        </ul>
-                    </div>
+                   
                 </div>
             </div>
         </footer>
