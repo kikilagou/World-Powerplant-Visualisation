@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>COMP6214 Coursework 1</title>
+
+        <!-- Icon css link -->
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        
+        <!-- Rev slider css -->
+        <link href="vendors/revolution/css/settings.css" rel="stylesheet">
+        <link href="vendors/revolution/css/layers.css" rel="stylesheet">
+        <link href="vendors/revolution/css/navigation.css" rel="stylesheet">
+        
+        <!-- Extra plugin css -->
+        <link href="vendors/owl-carousel/owl.carousel.min.css" rel="stylesheet">
+        
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/responsive.css" rel="stylesheet">
+
+		<script src="//d3plus.org/js/topojson.js"></script>
+		<script src="https://d3js.org/d3.v5.min.js"></script>
+		<script src="https://d3plus.org/js/d3.js"></script>
+		<script src="https://d3plus.org/js/d3plus.js"></script>
+		<script src="d3pie.min.js"></script>
+		<script src="https://unpkg.com/topojson@3"></script>
+		<script src="https://d3js.org/d3-queue.v3.min.js"></script>
+
+<script src="https://d3plus.org/js/d3plus-geomap.v0.6.full.min.js"></script>
+
+		
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        
+        <!--================Header Menu Area =================-->
+        <header class="main_menu_area">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" style="color:black;" href="#">COMP6214: Coursework 1</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#feature_area">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#best_3d_area">Preprocessing</a></li>
+                        <li class="nav-item"><a class="nav-link" href="portfolio.html">Visualisations</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!--================End Header Menu Area =================-->
+        
+        
+        <!--================Slider Area =================-->
+        <section class="main_slider_area">
+            <div id="main_slider" class="rev_slider" data-version="5.3.1.6">
+                <ul>
+                    <li data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="300" data-rotate="0"  data-saveperformance="off"  data-title="Creative" data-param1="01" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                        <!-- LAYER NR. 1 -->
+                        <div class="slider_text_box">
+                            <div class="tp-caption tp-resizeme first_text" 
+                            data-x="['center','center','center','center','15','center']" 
+                            data-hoffset="['0','80','80','0']" 
+                            data-y="['top','top','top','top']" 
+                            data-voffset="['400','400','400','250','180','180']" 
+                            data-fontsize="['72','72','72','50','50','30']"
+                            data-lineheight="['82','82','82','62','62','42']"
+                            data-width="['none']"
+                            data-height="none"
+                            data-whitespace="nowrape"
+                            data-type="text" 
+                            data-responsive_offset="on" 
+                            data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:0px;s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
+                            data-textAlign="['center','center','center','center','center','center']"><b>COMP6214</b><br />Power Plant Database Coursework</div>
+                            
+							
+                            <div class="tp-caption tp-resizeme secand_text" 
+                                data-x="['center','center','center','center','15','center']" 
+                                data-hoffset="['0','80','80','0']" 
+                                data-y="['top','top','top','top']" 
+                                data-voffset="['575','575','575','400','320','300']"  
+                                data-fontsize="['24','24','24','18','16','16']"
+                                data-lineheight="['36','36','36','26','26','26']"
+                                data-width="['none','none','none','none','none']"
+                                data-height="none"
+                                data-whitespace="nowrape"
+                                data-type="text" 
+                                data-responsive_offset="on"
+                                data-transform_idle="o:1;"
+                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
+                                data-textAlign="['center','center','center','center','center','center']">This courseowork demonstratates work done for data cleaning and visualisation
+                            </div>
+                           			
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </section>
+        <!--================End Slider Area =================-->
+        
+        <!--================About Area =================-->
+        <section class="feature_area" id="feature_area">
+            <div class="container-fluid">
+                <div class="c_title">
+                    <img src="img/icon/title-icon.png" alt="">
+                   <!-- <h6>About</h6> -->
+                    <h2>About</h2>
+                </div>
+                <div class="row feature_inner">
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="feature_item">
+                            <div class="f_icon">
+                                <img src="img/timeline (1).png" style="max-width:70%; max-height:70%;" alt="">
+                            </div>
+                            <h4>Project Stages</h4>
+                            <p>Cleaning data</p>
+							<p>Data Analysis and Manipulate</p>
+							<p>Visualisation</p>
+							<p>Website Building</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="feature_item">
+                            <div class="f_icon">
+                                <img src="img/data.png" style="max-width:80%; max-height:80%;" alt="">
+                            </div>
+                            <h4>Technologies</h4>
+                            <p>d3</p>
+							<p>html, css,</p>
+							<p>bootstrap</p>
+							<p>openrefine</p>
+							<p>excel</p>
+							
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="feature_item">
+                            <div class="f_icon">
+                                <img src="img/recruitment.png" style="max-width:90%; max-height:90%;" alt="">
+                            </div>
+                            <h4>Resources</h4>
+                            <p>the dataset</p>
+							<p>, the icons,</p>
+							<p> the bootstrap template</p>
+							
+                            <!--<a class="more_btn" href="#">Read More</a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--================End Feature Area =================-->
+        
+      
+		 <!--================ Processing Area =================-->
+        <section class="feature_area" id="feature_area">
+            <div class="container-fluid"  style="text-align: center;">
+				<div class="c_title">
+                    <img src="img/icon/title-icon.png" alt="">
+                    <h2>Preprocessing</h2>
+                </div>
+				
+                <div class="myBtnContainer" id="myBtnContainer">
+				  <button class="btn" onclick="filterSelection('all')">All</button>
+				  <button class="btn" onclick="filterSelection('cars')" style="font-size: 15px; font-family: "Roboto", sans-serif; font-weight: 500;">Data Cleaning</button>
+				  <button class="btn" onclick="filterSelection('animals')" style="font-size: 15px; font-family: "Roboto", sans-serif; font-weight: 500;">Data Imputation</button>
+				  <button class="btn" onclick="filterSelection('fruits')" style="font-size: 15px; font-family: "Roboto", sans-serif; font-weight: 800;">Data Manipulation</button>
+				</div>
+
+				<div class="container">
+				  <div class="filterDiv all cars">Deleting Empty Rows</div>
+				  <div class="filterDiv all colors fruits">Fixing Spelling Mistakes</div>
+				  <div class="filterDiv all cars">Other 1</div>
+				  <div class="filterDiv all colors">Other 1</div>
+				  <div class="filterDiv all cars animals">Other 1</div>
+				</div>
+
+				
+            
+            </div>
+        </section>
+         <!--================End Procession Area =================-->
+		 
+		 
+		 <section class="feature_area" id="feature_area">
+			 <div class="container-fluid"  style="text-align: center;">
+				<div class="c_title">
+                    <img src="img/icon/title-icon.png" alt="">
+                    <h2>Visualisation 1</h2>
+                </div>
+				
+				<div id="map" class="background feature mesh"></div>
+				
+				<!-- Based on https://bl.ocks.org/piwodlaiwo/90777c94b0cd9b6543d9dfb8b5aefeef who cited: Based on https://bl.ocks.org/iamkevinv/0a24e9126cd2fa6b283c6f2d774b69a2 -->
+				
+				<script src="https://d3js.org/d3.v4.min.js"></script>
+				<script src="https://d3js.org/topojson.v2.min.js"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.13.0/d3-legend.js"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.13.0/d3-legend.js"></script>
+
+						<script>
+						d3.csv("dataset.csv").get(function(error, rows) {
+								rows.forEach(function(error, d) {
+								d.capacity_mw = +d.capacity_mw;
+								d.latitude = +d.latitude;
+								d.longitude = +d.longitude;
+								d.commissioning_year = +d.commissioning_year;
+								d.estimated_generation_gwh = +d.estimated_generation_gwh;
+							});
+							console.log(rows); 
+							
+						var width = 1300,
+							height = 900,
+							active = d3.select(null);
+						
+						var projection = d3.geo.mercator()
+							.scale(200)
+							.translate([width / 2, height /1.9]);
+						  
+						var zoom = d3.zoom().on("zoom", zoomed).scaleExtent([1, 100]);
+						var path = d3.geo.path().projection(projection);
+
+						var svg = d3.select("#map").append("svg")
+							.attr("width", width)
+							.attr("height", height)
+							.on("click", stopped, true);
+
+						svg.append("path")
+							.attr("class", "background")
+							.attr("width", width)
+							.attr("height", height)
+							.on("click", reset);
+
+						var g = svg.append("g");
+						  
+						svg.call(zoom);
+							
+					
+						// delete this line to disable free zooming
+							
+							// .call(zoom.event); // not in d3 v4
+						function placePlants(points) {
+								g.selectAll("circle").remove();
+								
+								
+								
+								var locations = g.selectAll("circle")
+										   .data(points)
+										   .enter()
+										   .append("circle")
+										   .attr("cx", function(e) {return projection([+e.longitude, +e.latitude])[0];})
+										   .attr("cy", function(d) {return projection([+d.longitude, +d.latitude])[1];})
+										   .attr("r", 2) // radius
+										   .style("fill", function(d) {
+												if  (d.fuel1 == "Other" || d.fuel1 == "Waste"){
+													return  "black"
+													}
+												else if (d.fuel1 == "Coal" || d.fuel1 == "Gas" || d.fuel1 == "Oil" || d.fuel1 == "Nuclear"){
+													return  "red"
+													}
+												else if(d.fuel1 == "Biomass" || d.fuel1 == "Geothermal" || d.fuel1 == "Hydro" || d.fuel1 == "Solar" || d.fuel1 == "Wind") {
+													return  "green"
+													}
+											})
+										   .style("opacity", 0.5);
+								   
+						}
+
+						d3.json("https://gist.githubusercontent.com/mbostock/4090846/raw/d534aba169207548a8a3d670c9c2cc719ff05c47/world-50m.json", function(error, world) {
+						  if (error) throw error;
+
+						  g.selectAll("path")
+							  .data(topojson.feature(world, world.objects.countries).features)
+							.enter().append("path")
+							  .attr("d", path)
+							  .attr("class", "country_area")
+							  .on("click", clicked)
+							  .on();
+
+						  g.append("path")
+							  .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
+							  .attr("class", "mesh")
+							  .attr("id", "borders")
+							  .attr("d", path);
+						
+						placePlants(rows)
+							  
+						// locations function based on https://codepen.io/jamesthomson/pen/wMzQYG?editors=1010
+						  
+						  
+						});
+
+						function clicked(d) {
+						  if (active.node() === this) return reset();
+						  active.classed("active", false);
+						  active = d3.select(this).classed("active", true);
+
+						  var bounds = path.bounds(d),
+							  dx = bounds[1][0] - bounds[0][0],
+							  dy = bounds[1][1] - bounds[0][1],
+							  x = (bounds[0][0] + bounds[1][0]) / 2,
+							  y = (bounds[0][1] + bounds[1][1]) / 2,
+							  scale = Math.max(1, Math.min(8, 0.9 / Math.max(dx / width, dy / height))),
+							  translate = [width / 2 - scale * x, height / 2 - scale * y];
+
+						  svg.transition()
+							  .duration(750)
+							  // .call(zoom.translate(translate).scale(scale).event); // not in d3 v4
+							  .call( zoom.transform, d3.zoomIdentity.translate(translate[0],translate[1]).scale(scale) ); // updated for d3 v4
+						}
+
+						function reset() {
+						  active.classed("active", false);
+						  active = d3.select(null);
+
+						  svg.transition()
+							  .duration(750)
+							  // .call( zoom.transform, d3.zoomIdentity.translate(0, 0).scale(1) ); // not in d3 v4
+							  .call( zoom.transform, d3.zoomIdentity ); // updated for d3 v4
+						}
+
+						function zoomed() {
+						  g.style("stroke-width", 1.5 / d3.event.transform.k + "px");
+						  // g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")"); // not in d3 v4
+						  g.attr("transform", d3.event.transform); // updated for d3 v4
+						}
+
+						// If the drag behavior prevents the default click,
+						// also stop propagation so we don’t click-to-zoom.
+						function stopped() {
+						  if (d3.event.defaultPrevented) d3.event.stopPropagation();
+						}
+						
+					
+						// Legend source: https://d3-legend-v3.susielu.com/#color-ordinal
+						var ordinal = d3.scaleOrdinal()
+						  .domain(["Renewable", "Non Renewable", "Other"])
+						 // .range(["rgb(153, 107, 195)", "rgb(56, 106, 197)", "rgb(93, 199, 76)", "rgb(223, 199, 31)", "rgb(234, 118, 47)"]);
+						  .range(["rgb(93, 199, 76)", "rgb(234, 118, 47)", "rgb(223, 199, 31)"]);
+
+						var svg = d3.select("svg");
+
+						svg.append("g")
+						  .attr("class", "legendOrdinal")
+						  .attr("transform", "translate(20,20)");
+
+						var legendOrdinal = d3.legendColor()
+						  //.shape("path", d3.symbol().type(d3.symbolTriangle).size(150)())
+						  .shapePadding(10)
+						  .shape("circle")
+						  //use cellFilter to hide the "e" cell
+						  .scale(ordinal)
+						  .on("cellclick", function(legendItem){
+								console.log("whoop")	
+								console.log(filteredData)
+								placePlants(filteredData)
+
+							})
+						  .on("cellover", function(legendItem){
+							var circle = d3.select(this)
+							.selectAll(".swatch");
+							circle.attr("r", circle.attr("r") *1.3);	
+						  })
+						  .on("cellout", function(legendItem){
+							var circle = d3.select(this)
+							.selectAll(".swatch");
+							circle.attr("r", circle.attr("r") /1.3);	
+						  });
+
+
+						svg.select(".legendOrdinal")
+						  .call(legendOrdinal);
+						  
+						// https://stackoverflow.com/questions/23156864/d3-js-filter-from-csv-file-using-multiple-columns
+						var filteredData = rows.filter(function(d) { 
+
+								if( d["fuel1"] == "Other") { 
+									return d;
+								}})
+								
+						
+					})
+					
+					
+					
+			</script>
+			<!--
+			<script src="https://d3js.org/d3.v3.min.js"></script>
+			<script src="https://d3js.org/topojson.v0.min.js"></script>
+			<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.13.0/d3-legend.js"></script>
+
+			<script>
+			
+				d3.csv("dataset.csv").get(function(error, rows) {
+				rows.forEach(function(error, d) {
+								d.capacity_mw = +d.capacity_mw;
+								d.latitude = +d.latitude;
+								d.longitude = +d.longitude;
+								d.commissioning_year = +d.commissioning_year;
+								d.estimated_generation_gwh = +d.estimated_generation_gwh;
+							});
+							console.log(rows); 
+
+
+				var margin = {top:30, left: 30, right:30, bottom:30}, 
+					height = 900 - margin.top - margin.bottom,
+					width = 1500 - margin.left - margin.right,
+					active = d3.select(null),	
+					centered;
+				
+
+		//geoOrthographic
+				var projection = d3.geo.mercator()
+					.scale(200)
+                    .center([13.439235,48.830666])  // centers map at given coordinates
+                    .translate([width /2.1, height / 2.9]);
+					
+
+				var svg = d3.select("#map").append("svg")
+					.attr("width", width)
+					.attr("height", height);
+					
+				var path = d3.geo.path()
+					.projection(projection);
+
+				var g = svg.append("g");
+				
+
+				// load and display the world and locations
+				d3.json("https://gist.githubusercontent.com/mbostock/4090846/raw/d534aba169207548a8a3d670c9c2cc719ff05c47/world-50m.json", function(error, topology) {
+
+								const colors = ['silver'];
+
+				var world = g.selectAll("path")
+								.data(topojson.object(topology, topology.objects.countries).geometries)
+								.enter()
+								.append("path")
+								.attr("d", path)
+								.style("fill", () => colors[0]);
+
+
+				// add city location circles
+				var locations = g.selectAll("circle")
+								   .data(rows)
+								   .enter()
+								   .append("circle")
+								   .attr("cx", function(e) {return projection([+e.longitude, +e.latitude])[0];})
+								   .attr("cy", function(d) {return projection([+d.longitude, +d.latitude])[1];})
+								   .attr("r", 1)
+								   .style("fill", "red")
+								   .style("opacity", 0.7);
+				});
+
+				//zoom and pan functionality
+				var zoom = d3.behavior.zoom()
+					.scaleExtent([1, 100])
+					.on("zoom",function() {
+						g.attr("transform","translate("+ 
+							d3.event.translate.join(",")+")scale("+d3.event.scale+")");
+						g.selectAll("path")  
+							.attr("d", path.projection(projection)); 
+				  });
+				svg.call(zoom);
+				
+				function clicked(d) {
+					  var x, y, k;
+
+					  if (d && centered !== d) {
+						var centroid = path.centroid(d);
+						x = centroid[0];
+						y = centroid[1];
+						k = 4;
+						centered = d;
+					  } else {
+						x = width / 2;
+						y = height / 2;
+						k = 1;
+						centered = null;
+					  }
+
+					  g.selectAll("path")
+						  .classed("active", centered && function(d) { return d === centered; });
+
+					  g.transition()
+						  .duration(750)
+						  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+						  .style("stroke-width", 1.5 / k + "px");
+					}
+
+				
+				})
+
+
+				</script> 		  --->
+			 </div> 
+		 </section>
+		
+		
+        <!--================Footer Area =================-->
+        <footer class="footr_area">
+            <div class="footer_widget_area">
+                <div class="container">
+                    <div class="row footer_widget_inner">
+                        <div class="col-lg-4 col-sm-6">
+                            <aside class="f_widget f_about_widget">
+                                <img src="img/footer-logo.png" alt="">
+                                <p>Cras ex mauris, ornare eget pretium sit amet, dignissim et turpis. Nunc nec maximus dui, vel suscipit dolor. Donec elementum velit a orci facilisis rutrum.</p>
+                            </aside>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <aside class="f_widget f_insta_widget">
+                                <div class="f_title">
+                                    <h3>Instagram</h3>
+                                </div>
+                                <ul>
+                                    <li><a href="#"><img src="img/instagram/ins-1.jpg" alt=""></a></li>
+                                    <li><a href="#"><img src="img/instagram/ins-2.jpg" alt=""></a></li>
+                                    <li><a href="#"><img src="img/instagram/ins-3.jpg" alt=""></a></li>
+                                    <li><a href="#"><img src="img/instagram/ins-4.jpg" alt=""></a></li>
+                                    <li><a href="#"><img src="img/instagram/ins-5.jpg" alt=""></a></li>
+                                    <li><a href="#"><img src="img/instagram/ins-6.jpg" alt=""></a></li>
+                                    <li><a href="#"><img src="img/instagram/ins-7.jpg" alt=""></a></li>
+                                    <li><a href="#"><img src="img/instagram/ins-8.jpg" alt=""></a></li>
+                                </ul>
+                            </aside>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <aside class="f_widget f_subs_widget">
+                                <div class="f_title">
+                                    <h3>Subscribe to newsletter</h3>
+                                </div>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Your e-mail address here" aria-label="Your e-mail address here">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-secondary submit_btn" type="button">Subscribe</button>
+                                    </span>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer_copyright">
+                <div class="container">
+                    <div class="float-sm-left">
+                        <h5><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></h5>
+                    </div>
+                    <div class="float-sm-right">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--================End Footer Area =================-->
+        
+        
+        
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <!-- Rev slider js -->
+        <script src="vendors/revolution/js/jquery.themepunch.tools.min.js"></script>
+        <script src="vendors/revolution/js/jquery.themepunch.revolution.min.js"></script>
+        <script src="vendors/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+        <script src="vendors/revolution/js/extensions/revolution.extension.video.min.js"></script>
+        <script src="vendors/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+        <script src="vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+        <script src="vendors/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+        <script src="vendors/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+        <!-- Extra plugin css -->
+        <script src="vendors/counterup/jquery.waypoints.min.js"></script>
+        <script src="vendors/counterup/jquery.counterup.min.js"></script> 
+        <script src="vendors/counterup/apear.js"></script>
+        <script src="vendors/counterup/countto.js"></script>
+        <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+        <script src="vendors/magnify-popup/jquery.magnific-popup.min.js"></script>
+        <script src="js/smoothscroll.js"></script>
+        
+        <script src="js/theme.js"></script>
+		<script>
+		filterSelection("all")
+		function filterSelection(c) {
+		  var x, i;
+		  x = document.getElementsByClassName("filterDiv");
+		  if (c == "all") c = "";
+		  for (i = 0; i < x.length; i++) {
+			w3RemoveClass(x[i], "show");
+			if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+		  }
+		}
+
+		function w3AddClass(element, name) {
+		  var i, arr1, arr2;
+		  arr1 = element.className.split(" ");
+		  arr2 = name.split(" ");
+		  for (i = 0; i < arr2.length; i++) {
+			if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+		  }
+		}
+
+		function w3RemoveClass(element, name) {
+		  var i, arr1, arr2;
+		  arr1 = element.className.split(" ");
+		  arr2 = name.split(" ");
+		  for (i = 0; i < arr2.length; i++) {
+			while (arr1.indexOf(arr2[i]) > -1) {
+			  arr1.splice(arr1.indexOf(arr2[i]), 1);     
+			}
+		  }
+		  element.className = arr1.join(" ");
+		}
+
+		// Add active class to the current button (highlight it)
+		var btnContainer = document.getElementById("myBtnContainer");
+		var btns = btnContainer.getElementsByClassName("btn");
+		for (var i = 0; i < btns.length; i++) {
+		  btns[i].addEventListener("click", function(){
+			var current = document.getElementsByClassName("active");
+			current[0].className = current[0].className.replace(" active", "");
+			this.className += " active";
+		  });
+		}
+		</script>
+
+    </body>
+</html>
