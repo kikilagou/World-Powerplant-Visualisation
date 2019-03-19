@@ -307,7 +307,7 @@ i:before {
 }
 
 .main_menu_area.navbar_fixed {
-  position: fixed;
+  /* position: fixed; */
   width: 100%;
   top: -70px;
   left: 0;
@@ -394,7 +394,7 @@ i:before {
 ============================================================================================ */
 .main_slider_area {
   background: url(../img/home-slider/slider-bg-1.png) no-repeat scroll center center;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
   background-size: cover;
 }
 
@@ -468,6 +468,15 @@ i:before {
   max-width: 290px;
   margin: auto;
   padding-bottom: 60px;
+}
+
+.card .card-body  {
+  font-size: 15px;
+  line-height: 28px;
+  font-family: "Roboto", sans-serif;
+  color: #7c8d93;
+  font-weight: 500;
+  padding: 20px 20px 20px 20px;
 }
 
 .feature_item:hover {
@@ -2324,5 +2333,15 @@ i:before {
   stroke-linejoin: round;
 }
 
+.feature_area .vis1about p {
+  padding: 20px 10px 20px 10px;
+  color: #7c8d93;
+  font-weight: 300;
+}
+
+.feature_area .vis1about h5 {
+  color: #505353;
+
+}
 
 /*# sourceMappingURL=style.css.map */

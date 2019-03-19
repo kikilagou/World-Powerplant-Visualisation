@@ -34,8 +34,42 @@
 		<script src="https://d3js.org/d3-queue.v3.min.js"></script>
 
 		<script src="https://d3plus.org/js/d3plus-geomap.v0.6.full.min.js"></script>
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-		
+		<style>
+		/* source: https://stackoverflow.com/questions/10805184/show-data-on-mouseover-of-circle */
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  color:black;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+		</style>
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -46,25 +80,27 @@
 	
 
     <body>
-        
+			<script>
+					AOS.init();
+				  </script>
         <!--================Header Menu Area =================-->
         <header class="main_menu_area">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" style="color:black;" href="#">COMP6214: Coursework 1</a>
+                <!-- <a class="navbar-brand" style="color:black;" href="#">COMP6214: Coursework 1</a> -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav">
                         <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#feature_area">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="#best_3d_area">Preprocessing</a></li>
-                        <li class="nav-item"><a class="nav-link" href="portfolio.html">Visualisations</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#best_3d_area">Visualisations</a></li>
                     </ul>
-                </div>
+                </div> -->
             </nav>
         </header>
         <!--================End Header Menu Area =================-->
@@ -120,15 +156,16 @@
 		
 		
         <!--================About Area =================-->
-        <section class="feature_area" id="feature_area">
+        <section class="feature_area" id="feature_area" >
             <div class="container-fluid">
                 <div class="c_title">
-                    <img src="img/icon/title-icon.png" alt="">
                    <!-- <h6>About</h6> -->
-                    <h2>About</h2>
+				   <span style="display:inline-block;
+				   border-bottom:4px solid black;
+				   padding-bottom:10px;"><h2>About</h2></span>
                 </div>
                 <div class="row feature_inner">
-                    <div class="col-lg-4 col-sm-6">
+                    <div class="col-lg-4 col-sm-6 " data-aos="zoom-in-right">
                         <div class="feature_item">
                             <div class="f_icon">
                                 <img src="img/timeline (1).png" style="max-width:70%; max-height:70%;" alt="">
@@ -140,7 +177,7 @@
 							<p>Website Building</p>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6">
+                    <div class="col-lg-4 col-sm-6" data-aos="zoom-in-up">
                         <div class="feature_item">
                             <div class="f_icon">
                                 <img src="img/data.png" style="max-width:80%; max-height:80%;" alt="">
@@ -154,7 +191,7 @@
 							
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6">
+                    <div class="col-lg-4 col-sm-6" data-aos="zoom-in-left">
                         <div class="feature_item">
                             <div class="f_icon">
                                 <img src="img/recruitment.png" style="max-width:90%; max-height:90%;" alt="">
@@ -173,12 +210,15 @@
         <!--================End Feature Area =================-->
         
       
-		 <!--================ Processing Area =================-->
-        <section class="feature_area" id="feature_area">
+		 <!--data-aos="fade-up"
+		data-aos-duration="3000">================ Processing Area =================-->
+		<section class="feature_area" id="feature_area"
+		 
             <div class="container-fluid"  style="text-align: center;">
 				<div class="c_title">
-                    <img src="img/icon/title-icon.png" alt="">
-                    <h2>Preprocessing</h2>
+                    <span style="display:inline-block;
+						border-bottom:4px solid black;
+						padding-bottom:10px;"><h2>Preprocessing</h2></span>
                 </div>
 				
                 <!-- <div class="myBtnContainer" id="myBtnContainer">
@@ -198,7 +238,8 @@
 				<h3>Data Cleaning</h3><br>
 
 				<div class="accordion" id="accordionExample">
-						<div class="card">
+						<div class="card" data-aos="fade-up"
+						data-aos-duration="500">
 						  <div class="card-header" id="headingOne">
 							<h5 class="mb-0">
 							  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -215,7 +256,8 @@
 							</div>
 						  </div>
 						</div>
-						<div class="card">
+						<div class="card" data-aos="fade-up"
+						data-aos-duration="500">
 						  <div class="card-header" id="headingTwo">
 							<h5 class="mb-0">
 							  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -233,7 +275,8 @@
 							</div>
 						  </div>
 						</div>
-						<div class="card">
+						<div class="card" data-aos="fade-up"
+						data-aos-duration="500">
 						  <div class="card-header" id="headingThree">
 							<h5 class="mb-0">
 							  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -248,7 +291,8 @@
 							</div>
 						  </div>
 						</div>
-						<div class="card">
+						<div class="card"data-aos="fade-up"
+						data-aos-duration="500">
 								<div class="card-header" id="headinga">
 								  <h5 class="mb-0">
 									<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsea" aria-expanded="false" aria-controls="collapsea">
@@ -263,7 +307,8 @@
 							</div>
 								</div>
 							</div>
-							<div class="card">
+							<div class="card" data-aos="fade-up"
+							data-aos-duration="500">
 									<div class="card-header" id="headingb">
 									  <h5 class="mb-0">
 										<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseb" aria-expanded="false" aria-controls="collapseb">
@@ -281,50 +326,50 @@
 									</div>
 									
 								</div>
-								<div class="card">
-										<div class="card-header" id="headingx">
+								<div class="card" data-aos="fade-up"
+								data-aos-duration="500">
+										<div class="card-header" id="headingf">
 										  <h5 class="mb-0">
-											<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapsex" aria-expanded="false" aria-controls="collapsex">
-											  Removing Stange and Special Characters
+											<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsef" aria-expanded="false" aria-controls="collapsef">
+												Removing Stange and Special Characters
 											</button>
 										  </h5>
 										</div>
-									
-										<div id="collapsex" class="collapse show" aria-labelledby="headingx" data-parent="#accordionExample">
-										  <div class="card-body">
-										In several of the textual data columsn such as 'owner', 'name', and 'source', the entries were riddled with special characters which made the data uninterpretable and unsuitable for plotting. Characters included: 'Ã‘Ã¶Ã­©ƒâ‚¬â„'										'.
-										This issue could be fixed in either OpenRefine or Excel. I chose to fix the issue in OpenRefine. 
-										The method was to manual select groups of special characters in a column, then go to the heading of the column > 'Edit cells' > 'Replace'. Then in the 'Find' field, the special characters were inputed. In the 'Replace with' field, nothing was imputed, so that the unwated characters would effectively be deleted. This was repeated for each column that contained special characters. This method, although more manual that the others was effective in removing all special characters.
+										<div id="collapsef" class="collapse" aria-labelledby="headingf" data-parent="#accordionExample">
+										<div class="card-body">
+												In several of the textual data columsn such as 'owner', 'name', and 'source', the entries were riddled with special characters which made the data uninterpretable and unsuitable for plotting. Characters included: 'Ã‘Ã¶Ã­©ƒâ‚¬â„'	'. This issue could be fixed in either OpenRefine or Excel. I chose to fix the issue in OpenRefine. The method was to manual select groups of special characters in a column, then go to the heading of the column > 'Edit cells' > 'Replace'. Then in the 'Find' field, the special characters were inputed. In the 'Replace with' field, nothing was imputed, so that the unwated characters would effectively be deleted. This was repeated for each column that contained special characters. This method, although more manual that the others was effective in removing all special characters.</div>
 										</div>
-										</div>
-									  </div>
-									  <div class="card">
-											<div class="card-header" id="headingy">
+										
+									</div>
+									<div class="card" data-aos="fade-up"
+									data-aos-duration="500">
+											<div class="card-header" id="headingl">
 											  <h5 class="mb-0">
-												<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapsey" aria-expanded="false" aria-controls="collapsey">
-												  Removing Extreme Numerical Values
+												<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsel" aria-expanded="false" aria-controls="collapsel">
+														Removing Extreme Numerical Values
 												</button>
 											  </h5>
 											</div>
-										
-											<div id="collapsey" class="collapse show" aria-labelledby="headingy" data-parent="#accordionExample">
-											  <div class="card-body">Some numerical values were unrealistic and had to be removed from the dataset altogether. There were a very small number of cells affected by this issue, and it was observed in the 'estimated_generation_gwh' field. The 'reasonable' range of values for this column seemed to be between 0 and (apprx) 45000. Rows that contained values such as 9679957979999.00, 45745747457457400.00, 45745457.00, and 346346436.00 were removed from the dataset. There only four rows removed for this reason.
-												  This was done using Excel, as it is difficult to remove rows in OpenRefine. The exreme values problem was first discovered in OpenRefine when a numerical facet was placed on 'estimated_generation_gwh'. The spread of the data was screwered, which promted further investigation. 
-												  In order to identify cells with extreme values, a filter was applied to every column in the dataset by going to 'Home' > 'Sort and Filter' > 'Filter'. Then the numerical columns were checked using the filter.
-												  As Excel's filtering tool sorts the unique values by ascending order, it was easy to identify extremely small or extremely large values that did not fall within the correct range for the column.
-											  </div>
+											<div id="collapsel" class="collapse" aria-labelledby="headingl" data-parent="#accordionExample">
+											<div class="card-body">
+													Some numerical values were unrealistic and had to be removed from the dataset altogether. There were a very small number of cells affected by this issue, and it was observed in the 'estimated_generation_gwh' field. The 'reasonable' range of values for this column seemed to be between 0 and (apprx) 45000. Rows that contained values such as 9679957979999.00, 45745747457457400.00, 45745457.00, and 346346436.00 were removed from the dataset. There only four rows removed for this reason. This was done using Excel, as it is difficult to remove rows in OpenRefine. The exreme values problem was first discovered in OpenRefine when a numerical facet was placed on 'estimated_generation_gwh'. The spread of the data was screwered, which promted further investigation. In order to identify cells with extreme values, a filter was applied to every column in the dataset by going to 'Home' > 'Sort and Filter' > 'Filter'. Then the numerical columns were checked using the filter. As Excel's filtering tool sorts the unique values by ascending order, it was easy to identify extremely small or extremely large values that did not fall within the correct range for the column.
+												</div>
 											</div>
-										  </div>
+											
+										</div>
+											
 					  </div>
 
-				<br><h3>Data Manipulation</h3><br>
+				<br>
+				<h3>Data Manipulation</h3><br>
 
 				<div class="accordion" id="accordionExample2">
 						
-						<div class="card">
+						<div class="card" data-aos="fade-up"
+						data-aos-duration="500">
 						  <div class="card-header" id="heading4">
 							<h5 class="mb-0">
-							  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+							  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
 								Fixing Shifted Data
 							  </button>
 							</h5>
@@ -339,31 +384,32 @@
 							</div>
 						  </div>
 						</div>
-						<div class="card">
-								<div class="card-header" id="heading3">
+
+						<div class="card" data-aos="fade-up"
+						data-aos-duration="500">
+								<div class="card-header" id="heading5">
 								  <h5 class="mb-0">
-									<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-									  Removing Empty and Redundant Columns
+									<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+									Removing Empty and Redundant Columns
 									</button>
 								  </h5>
 								</div>
-							
-								<div id="collapse3" class="collapse show" aria-labelledby="heading3" data-parent="#accordionExample2">
+								<div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample2">
 								  <div class="card-body">
-									  The dataset contained some columns which had no entried at all, and thus were deemed redundant. A particular example of this was the 'fuel4' column, which contained no data. This column was initally identified as being completely empty in Excle, using a filter on the column and examining the various unique entries (of which there were none). Using Excel was mosre suitable for this task as it involved deleting the empty column, which is not easily done in OpenRefine.
-									  The column was removed in Excle by right clicking on it and selecting 'Delete'.
-								  </div>
+										The dataset contained some columns which had no entried at all, and thus were deemed redundant. A particular example of this was the 'fuel4' column, which contained no data. This column was initally identified as being completely empty in Excle, using a filter on the column and examining the various unique entries (of which there were none). Using Excel was mosre suitable for this task as it involved deleting the empty column, which is not easily done in OpenRefine. The column was removed in Excle by right clicking on it and selecting 'Delete'.</div>
 								</div>
 							  </div>
-						<div class="card">
-						  <div class="card-header" id="heading5">
+
+						<div class="card" data-aos="fade-up"
+						data-aos-duration="500">
+						  <div class="card-header" id="heading8">
 							<h5 class="mb-0">
-							  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+							  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
 								Standardising Data
 							  </button>
 							</h5>
 						  </div>
-						  <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample2">
+						  <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordionExample2">
 							<div class="card-body">
 								Some columns contained data that did follow the same formatting and naming conventions as the rest of the column. For example, there were some entries in the 'country' column which were not in the form of a country code, instead they were full country names (one particular example was 'Spain' being used a country code), or more subtly some country codes did not follow the three letter format that was prevalent in the column.
 								A numerical example of this issue was found in the 'estimated_generation_gwh' column where most values were digits, however some cells included the letters '(gwh)', which in this context represented the units of the numbers in the column.
@@ -372,7 +418,8 @@
 							</div>
 						  </div>
 						</div>
-						<div class="card">
+						<div class="card" data-aos="fade-up"
+						data-aos-duration="500">
 								<div class="card-header" id="heading5">
 								  <h5 class="mb-0">
 									<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
@@ -398,18 +445,53 @@
 		 
 		 
 		 <!-- Javascript Code -->
-		 <section class="feature_area" id="feature_area">
+		 <section class="feature_area" id="feature_area"data-aos="fade-up"
+		 data-aos-duration="3000">
 			 <div class="container-fluid"  style="text-align: center;">
 				<div class="c_title">
-                    <img src="img/icon/title-icon.png" alt="">
-                    <h2>Visualisation 1</h2>
-                </div>
-				
-				<!-- Button Definitions -->
-				<div>
-					<div>
-						Controls:
-					</div>
+					<br><br>
+						<span style="display:inline-block;
+						border-bottom:4px solid black;
+						padding-bottom:10px;"><h2>Visualisation</h2>
+						</span>
+					<br><br>
+	
+
+				<div class="vis1about">
+						<h5>Target Audience and Data</h5>
+
+						<p>This visualisation was intended for an audience interested in gaining a high level overview of the distribution of power plants in the world. 
+							A colour scheme is apploed to the visualisation to allow the audience to immediately see information regarding locations of power plants that primarily produce renewable and non-renewable energy.
+							Thus the visualisation addresses two main audience interests - seeing locations of power plants, and the environmental impact that various countries have based on their power plants.
+						
+							The data that was utilised for this visualisation included the power plant name and owner information, the year in which the site was built as well as the country, the estimated generated power in gigawatt hours, the various fuel types that is produces. 
+							Overall it combines various attributed of the dataset to give a high level overview of the data. 
+							The dataset does not cover certain areas of the world, such as North America, France, and Brazil. This is due to there being no data for these countries to plot. Due to this, the visualisation cannot provide full infomation regarding the world's power plants, and may not be the best tool for companies or proffesionals.
+							
+						</p>
+
+						<h5>Interactivity</h5>
+								<p>
+								<b><u>Filtering by Fuel Category</u></b><br>
+								Firstly, the user is able to filter which power plants are shown on the map by three checkboxes with options to view 'Renewable', 'Non-Renewable', and 'Other' power plants.
+								Checking the box will show the locations of the specified category of power plants on the map, and unchecking hides the locations. Any combination of categories can be selected using the checkboxes.
+									
+								<br><b><u>Sizing by Location or Power Production</u></b><br>
+								The visualisation allows for the toggling between sizing the points representing power station locations with a fixed size radius, and the representing the locations of power stations with a radius proportional to the estimated annual power generation.
+								The radio buttons 'By Energy Production (GWH)' and 'By Power Plant Location' allow the user to switch the way points on the maps are sized.
+								This option is quite useful is gaining a deeper understnading of what environmental impact power stations have. For example, when viewing the power station locations with fixed size points, it can be seen that the majority of power stations fall under the 'Renewable' energy category.
+								This may lead to the assumption that the majority of power is being produced using renewable energy. However, this is incorrect and can be seen when the visualisation is toggled to show power station locations with points that are proportional in size to the energy they produce.
+								In this view, it is obvious that 'Non-Renewable' power stations are responsible for producing the majority of power in world. It can be seen that there are only a few large 'Reneable' power stations that produce substancial electricity (Brazil containing the most prevalent).
+
+								<br><b><u>Zooming</u></b><br>
+									The visualisation is zoomable either by using the mouse or touchpad scroll wheel, or the user is able to click on the country they would like to zoom into and the visualisation will automatically zoom to focus on the selected area of the map. Clicking on the selected area a second time will pan out the visualisation to original zoom size.
+									When zooming the points of the map scale accordingly allowing the power station locations to be viewed more easily.
+									
+
+				</div>
+
+					<br>	
+				<div>				
 					<div>
 						<span><input type="checkbox"  name="cat1" id='checkRenew' onclick="callOnCheckboxSelection()" checked>Renewable </span>
 						<span style="padding-left: 20px"></span><input type="checkbox" name="cat2" id='checkNonRenew' onclick="callOnCheckboxSelection()" checked>Non-Renewable</span>
@@ -429,14 +511,15 @@
 
 				</div>
 				<div id="map" class="background feature mesh"></div>
-
+				
 				
 				<!-- Based on https://bl.ocks.org/piwodlaiwo/90777c94b0cd9b6543d9dfb8b5aefeef who cited: Based on https://bl.ocks.org/iamkevinv/0a24e9126cd2fa6b283c6f2d774b69a2 -->
-				
+
 				<script src="https://d3js.org/d3.v4.min.js"></script>
 				<script src="https://d3js.org/topojson.v2.min.js"></script>
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.13.0/d3-legend.js"></script>
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.13.0/d3-legend.js"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
 
 				<script>
 
@@ -456,6 +539,15 @@
 							height = 900,
 							active = d3.select(null);
 						var filter = new Set(["Renewable", "NonRenewable", "Other"]);
+						
+						/* source: https://stackoverflow.com/questions/10805184/show-data-on-mouseover-of-circle */
+						var tip = d3.tip()
+						.attr('class', 'd3-tip')
+						.offset([-10, 0])
+						.html(function(d) {
+							return "<strong>Power Plant Name: </strong> <span style='color:black'>" + d.name + "</span><br><strong>Owner: </strong> <span style='color:black'>" + d.owner + "</span><br><strong>Year: </strong> <span style='color:black'>" + d.commissioning_year + "</span><br><strong>Country: </strong> <span style='color:black'>" + d.country_long + "</span><br>"
+							+ "<br><strong><u>Fuel Types and Power Production</u></strong> <br><strong>Primary Fuel: </strong><span style='color:black'>" + d.fuel1 + "</span><br> " + "<strong>Estimated Power Production (gwh): </strong><span style='color:black'>" + d.estimated_generation_gwh +"</span><br> ";
+						})
 
 						
 						var projection = d3.geo.mercator()
@@ -479,6 +571,7 @@
 						var g = svg.append("g");
 						  
 						svg.call(zoom);
+						svg.call(tip);
 
 						// Is called when a checkbox is selected
 						$(function() {
@@ -547,7 +640,7 @@
 							};
 						});
 
-
+						
 						function placePlants(points) {
 								g.selectAll("circle").remove();
 								
@@ -573,6 +666,21 @@
 													return  "green"
 													}
 											})
+											.on('mouseover', tip.show)
+   											.on('mouseout', tip.hide)
+											// .on("mouseover", function(d) {		
+											// 	div.transition()		
+											// 		.duration(200)		
+											// 		.style("opacity", .95);		
+											// 	div.html("Power Plant Name: " + d.name + "<br/>"  + "Year: " + d.commissioning_year  + "<br/>" )	
+											// 		.style("left", (d3.event.pageX) + "px")		
+											// 		.style("top", (d3.event.pageY - 28) + "px");	
+											// 	})				
+											// .on("mouseout", function(d) {		
+											// 	div.transition()		
+											// 		.duration(500)		
+											// 		.style("opacity", 0);	
+											// })
 										   .style("opacity", 0.5);
 
 						}
