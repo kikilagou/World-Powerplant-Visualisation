@@ -26,7 +26,7 @@
         
         <link href="css/style.css" rel="stylesheet">
         <link href="css/responsive.css" rel="stylesheet">
-
+         
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -54,6 +54,16 @@
                 stroke: black;
                 stroke-width: 2px;
                 fill: none;
+            }
+
+            table {
+                border-collapse: collapse;
+                border: 2px black solid;
+                font: 12px sans-serif;
+            }
+            td {
+                border: 1px black solid;
+                padding: 5px;
             }
             
             </style>
@@ -94,17 +104,35 @@
         <!--================End Header Menu Area =================-->
         
         <!--================Banner Area =================-->
+        <!--source https://gist.github.com/ndarville/7075823 -->
         <section class="banner_area">
             <div class="container">
                 <div class="banner_inner_text">
-                    <h2>Portfolio</h2>
-                    <p>See our best work</p>
+                    <h2>Cleaned Dataset</h2>
                 </div>
+                <script src="https://d3js.org/d3.v3.min.js"></script>
+               <!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
+                <div id="#datahere"></div>
+                        <script type="text/javascript"charset="utf-8">
+                            d3.text("dataset.csv", function(data) {
+                                var parsedCSV = d3.csv.parseRows(data);
+                                var container = d3.select("body")
+                                    .append("table")
+                                    .selectAll("tr")
+                                        .data(parsedCSV).enter()
+                                        .append("tr")
+                                    .selectAll("td")
+                                        .data(function(d) { return d; }).enter()
+                                        .append("td")
+                                        .text(function(d) { return d; });
+                            });
+        </script>
             </div>
         </section>
+
         <!--================End Banner Area =================-->
         
-        
+<!--         
             <button class="randomize">randomize</button>
             
             <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -253,7 +281,7 @@
                     .remove();
             };
             
-            </script>
+            </script> -->
 
 
         
