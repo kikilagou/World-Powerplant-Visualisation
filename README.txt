@@ -24,7 +24,7 @@ Links to sources used
 Website template:
 https://colorlib.com/wp/template/sierra/
 
-Logos:
+Icons:
 https://www.flaticon.com/authors/freepik
 https://www.freepik.com
 
@@ -32,3 +32,4 @@ Resources for D3 Visualisation and Effects:
 https://stackoverflow.com/questions/10805184/show-data-on-mouseover-of-circle
 https://bl.ocks.org/piwodlaiwo/90777c94b0cd9b6543d9dfb8b5aefeef 
 https://bl.ocks.org/iamkevinv/0a24e9126cd2fa6b283c6f2d774b69a2
+
