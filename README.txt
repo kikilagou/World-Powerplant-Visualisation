@@ -5,7 +5,7 @@
 Option 1 (Recommended): 
 
 The visualiation is being hosted on GitHub. 
-To access the visualisation navigate to the following URL: https://kikilagou.github.io/COMP6214Website/
+To access the visualisation navigate to the following URL:  https://kikilagou.github.io/World-Powerplant-Visualisation/
 (Chrome was used to test the website, however other browsers should display content the same)
 
 Option 2 (Running locally):
